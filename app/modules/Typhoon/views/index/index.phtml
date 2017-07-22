@@ -1,0 +1,66 @@
+
+@section('css')
+<link rel="stylesheet" type="text/css" href="<?php Utility::getModuleUrl('css/toast.css');?>">
+<link rel="stylesheet" type="text/css" href="<?php Utility::getModuleUrl('css/ol/ol.css');?>">
+<link rel="stylesheet" type="text/css" href="<?php Utility::getModuleUrl('css/index.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php Utility::getModuleUrl('css/season.css')?>">
+@endsection 
+
+@section('content')
+<div class="content">
+	<?php include dirname(__FILE__) . '/../components/left-bar.phtml'; ?>
+	<div id="map"></div>
+
+	<!-- 台风图例 -->
+	<div class="typhoon-legend">
+    	<div class="legend-title">台风图例</div>
+	    <div class="legends">
+	        <div class="legend-item fl">
+	            <span class="legend-level green"></span>
+	            <span>热带低压</span>
+	        </div>
+	        <div class="legend-item fr">
+	            <span class="legend-level blue"></span>
+	            <span>热带风暴</span>
+	        </div>
+	    </div>
+	    <div class="legends">
+	        <div class="legend-item fl">
+	            <span class="legend-level yellow"></span>
+	            <span>强热带风暴</span>
+	        </div>
+	        <div class="legend-item fr">
+	            <span class="legend-level dark-yellow"></span>
+	            <span>台风</span>
+	        </div>
+	    </div>
+	    <div class="legends">
+	        <div class="legend-item fl">
+	            <span class="legend-level pink"></span>
+	            <span>强台风</span>
+	        </div>
+	        <div class="legend-item fr">
+	            <span class="legend-level red"></span>
+	            <span>超强台风</span>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+<button class="for-legends">
+    <div>■ ■</div>
+    <div>■ ■</div>
+</button>
+
+@endsection
+
+@section('js')
+<script type="text/javascript" src="<?php Utility::getModuleUrl('js/ol/ol.js'); ?>"></script>
+<script type="text/javascript" src="<?php Utility::getModuleUrl('js/mlib.js'); ?>"></script>
+<script type="text/javascript" src="<?php Utility::getModuleUrl('js/toast.js'); ?>"></script>
+<script type="text/javascript" src="<?php Utility::getModuleUrl('js/myscript/typhoon.js'); ?>"></script>
+<script type="text/javascript" src="<?php Utility::getModuleUrl('js/highstock/highstock.js'); ?>"></script>
+<script type="text/javascript" src="<?php Utility::getModuleUrl('js/myscript/mychar.js'); ?>"></script>
+<script type="text/javascript" src="<?php Utility::getModuleUrl('js/myscript/citydistancen.js')?>"></script>
+<script type="text/javascript" src="<?php Utility::getModuleUrl('js/myscript/defined.js')?>"></script>
+@endsection

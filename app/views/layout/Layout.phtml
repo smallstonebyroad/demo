@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fruit Platform</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+</head>
+<body>
+
+<div class='main-header'>
+
+</div>
+
+<div class="main-body">
+    <div class="main-body-left">
+        @yield('main-body-left')
+    </div>
+    <div class="main-body-right">
+        @yield('main-body-right')
+    </div>
+</div>
+
+<div class="main-footer">
+    <div class="main-container">
+        <div>版权所有：浙江省气象台  | 技术支持：杭州幂拓科技有限公司</div>
+    </div>
+</div>
+
+<div class="main-waiting" id="_main_wariting">
+    <div style="background:url('{{asset('images/city/load.gif')}}') center center no-repeat"></div>
+</div>
+</body>
+</html>

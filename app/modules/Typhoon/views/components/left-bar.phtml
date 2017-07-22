@@ -1,0 +1,469 @@
+<div class="left-bar">
+	<div class="typhoon-search">
+		<input type="text" name="search-content" placeholder="请输入你要查询的台风名称、编号">
+		<div class="search-btn" onclick="Typhoon.GetTyphoonByNameOrID();">
+			<img src="<?php Utility::getModuleUrl('images/search-icon.png'); ?>">
+		</div>
+	</div>
+	<div class="typhoon-category">
+		<div class="categories">
+			<div class="category-item active fl">
+				<img src="<?php Utility::getModuleUrl('images/year-icon.png'); ?>">
+				<div>按年份</div>
+			</div>
+			<div class="category-item fl">
+				<img src="<?php Utility::getModuleUrl('images/path-icon.png'); ?>">
+				<div>按路径</div>
+			</div>
+			<div class="category-item fl">
+				<img src="<?php Utility::getModuleUrl('images/season-icon.png'); ?>">
+				<div>按季节</div>
+			</div>
+			<div class="category-item fl">
+				<img src="<?php Utility::getModuleUrl('images/intensity-icon.png'); ?>">
+				<div>按强度</div>
+			</div>
+			<div class="category-item fl">
+				<img src="<?php Utility::getModuleUrl('images/wind-rain-icon.png'); ?>">
+				<div>按风雨</div>
+			</div>
+			<div class="category-item fl">
+				<img src="<?php Utility::getModuleUrl('images/location-icon.png'); ?>">
+				<div>按登陆</div>
+			</div>
+		</div>
+		<div class="category-content">
+			<div class="year-category-content">
+				<?php
+				foreach ($years as $key => $year) {
+					if ($key == 0) {
+						echo "<div class='" . ($key == 0 ? "active" : "") . "'>" . $year['year'] . "</div>";
+					}else {
+						echo "<div>" . $year['year'] . "</div>";
+					}
+				}
+				;?>
+			</div>
+
+			<div class="path-category-content">
+				<div class="path-wrapper">
+					<div class="path-category path-category-circle fl" data-path="Circle" data-title="圆形选择">
+						<div class="path-circle"></div>
+					</div>
+					<div class="path-span fl"></div>
+					<div class="path-category path-category-square fl" data-path="Box" data-title="矩形选择">
+						<div class="path-square"></div>
+					</div>
+					<div class="path-span fl"></div>
+					<div class="path-category path-category-line fl" data-path="LineString" data-title="线形选择">
+						<div class="path-line"></div>
+					</div>
+					<div class="path-config fr">
+						<img src="<?php Utility::getModuleUrl('images/path-config.png'); ?>">
+					</div>
+					<div class="fr toggle-path-info"> ? </div>
+					<div class="path-tip"></div>
+				</div>
+				<div class="path-info">
+					<img src="<?php Utility::getModuleUrl('images/config-arrow.png'); ?>">
+					<div class="config-title">
+						路径选择操作提示
+						<img src="<?php Utility::getModuleUrl('images/config-close.png'); ?>" class="toggle-path-info">
+					</div>
+					<div class="path-info-content">
+						<div>1、点击路径选择图标，选中一种路径选择方式，鼠标移动到地图上时会出现一个蓝色的圆点。点击当前选中的图标，则取消当前的路径选择，鼠标移动到地图上后蓝色的圆点消失。</div>
+						<div>2、圆形/矩形：在地图上单击左键，拖动鼠标，绘制一个图像，到合适范围时单击左键完成圆形/矩形绘制并显示台风经过该范围内的台风</div>
+						<div>3、直线：在地图上单击左键，拖动鼠标到合适位置后双击左键，完成直线绘制并显示经过该条直线的台风。在不取消直线选择的条件下，可以进行多条直线的路径的关联筛选，显示经过多条直线的路径。</div>
+					</div>
+					<div class="path-content-btn">
+						<div class="fr">
+							<div class="fl path-info-btn path-cancel-btn">取消</div>
+							<div class="fr path-info-btn path-complete-btn">完成</div>
+						</div>
+						<div class="fc"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="season-category-content" style="display: none">
+                <div class="season-content-month" >
+                    <div class="month-item">
+                        <div class="fl">1月</div>
+                        <div class="fl">2月</div>
+                        <div class="fl">3月</div>
+                        <div class="fl">4月</div>
+                        <div class="fl">5月</div>
+                        <div class="fl">6月</div>
+                        <div class="fl">7月</div>
+                        <div class="fl">8月</div>
+                        <div class="fl">9月</div>
+                        <div class="fl">10月</div>
+                        <div class="fl">11月</div>
+                        <div class="fl">12月</div>
+                    </div>
+                    <div class="defined-month">
+                        <img src="<?php Utility::getModuleUrl('images/defined-icon.png')?>" title="自定义">
+                    </div>
+                </div>
+                <div class="season-content-defined" style="display: none">
+                    <div id="defined-content" >
+                        <div class="defined-date">
+                            <div class="defined-date-start">
+                                <div id="date-start"><span>1月</span></div>
+                                <div class="arrow-up" style="position: absolute;top: 122px;left:106px" onclick="ChangeMonth(this,-1)"></div>
+                                <div class="arrow-down" style="position: absolute;top: 134px;left:106px" onclick="ChangeMonth(this,1)"></div>
+                            </div>
+                            <div>
+                                <span>至</span>
+                            </div>
+                            <div class="defined-date-end">
+                                <div id="date-end"><span>2月</span></div>
+                                <div class="arrow-up" style="position: absolute;top: 122px;left:234px" onclick="ChangeMonth(this,-1)"></div>
+                                <div class="arrow-down" style="position: absolute;top: 134px;left:234px" onclick="ChangeMonth(this,1)"></div>
+                            </div>
+                        </div>
+                        <div id="submit">
+                            <span>确定</span>
+                        </div>
+                        <div id="return">
+                            <img src="<?php Utility::getModuleUrl('images/return-icon.png')?>" title="返回">
+                        </div>
+                    </div>
+                </div>
+			</div>
+
+			<div class="intensity-category-content">
+				<div class="intensity-content-top">
+					<div class="fl wind-intensity intensity-item active">风级<span>↓</span></div>
+					<div class="fl border"></div>
+					<div class="fl pressure-intensity intensity-item">气压<span>↓</span></div>
+					<div class="fl border"></div>
+					<div class="fl strong-intensity intensity-item">强度<span>↓</span></div>
+					<div class="fc"></div>
+				</div>
+				<div class="hover-wind-panel">
+					<div class="wind-panel-one">
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 10.8, 13.9);">6级</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 13.9, 17.2);">7级</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 17.2, 20.8);">8级</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 20.8, 24.5);">9级</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 24.5, 28.5);">10级</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 28.5, 32.6);">11级</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 32.6, 37);">12级</div>
+					</div>
+					<div class="wind-panel-two">
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 37, 41.4)">13级</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 41.4, 46.1)">14级</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 46.1, 50.9)">15级</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 50.9, 56)">16级</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByWindLevel(this, 56, 61.2)">17级</div>
+						<div class="fl gt-17" onclick="Typhoon.GetTyphoonByWindLevel(this, 61.3, 999)">17级以上</div>
+					</div>
+					<div class="wind-panel-tips">说明：显示生命周期中最大风速为选中等级的台风。</div>
+				</div>
+
+				<div class="hover-pressure-panel">
+					<div class="pressure-panel-one">
+						<div class="fl" onclick="Typhoon.GetTyphoonByPressure(this, 0, 900);">0 - 900</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByPressure(this, 901, 920);">901 - 920</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByPressure(this, 921, 940);">921 - 940</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByPressure(this, 941, 960);">941 - 960</div>
+					</div>
+					<div class="pressure-panel-two">
+						<div class="fl" onclick="Typhoon.GetTyphoonByPressure(this, 961, 980);">961 - 980</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByPressure(this, 981, 990);">981 - 990</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByPressure(this, 991, 1000);">991 - 1000</div>
+						<div class="fl" onclick="Typhoon.GetTyphoonByPressure(this, 1001, 9999);">1000+</div>
+					</div>
+					<div class="pressure-panel-tips">说明：显示生命周期中最小气压为选中气压范围内的台风。</div>
+				</div>
+
+				<div class="hover-strong-panel">
+					<div class="strong-panel-one">
+					    <div class="fl" onclick="Typhoon.GetTyphoonByIntensityLevel(this, 50.9, 999);">
+					    	<span>超强台风</span>
+					    	<div class="strong-active Super-TY"></div>
+					    </div>
+					    <div class="fl" onclick="Typhoon.GetTyphoonByIntensityLevel(this, 41.4, 50.9);">
+					    	<span>强台风</span>
+					    	<div class="strong-active STY"></div>
+					    </div>
+					    <div class="fl" onclick="Typhoon.GetTyphoonByIntensityLevel(this, 32.6, 41.4);">
+					    	<span>台风</span>
+					    	<div class="strong-active TY"></div>
+					    </div>
+					</div>
+					<div class="strong-panel-two">
+						<div class="fl" onclick="Typhoon.GetTyphoonByIntensityLevel(this, 24.5, 32.6);">
+					    	<span>强热带风暴</span>
+					    	<div class="strong-active STS"></div>
+					    </div>
+					    <div class="fl" onclick="Typhoon.GetTyphoonByIntensityLevel(this, 17.2, 24.5);">
+					    	<span>热带风暴</span>
+					    	<div class="strong-active TS"></div>
+					    </div>
+					    <div class="fl" onclick="Typhoon.GetTyphoonByIntensityLevel(this, 10.8, 17.2);">
+					    	<span>热带低压</span>
+					    	<div class="strong-active TD"></div>
+					    </div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="selected-result">
+		<div class="selected-category active">
+			<img src="<?php Utility::getModuleUrl('images/selected-one.png'); ?>">
+			结果集(<span class="typhoon-collection-count">0</span>)
+		</div>
+		<div class="selected-category not-allowed">
+			<img src="<?php Utility::getModuleUrl('images/selected-two.png'); ?>">
+			当前选中
+		</div>
+		<div class="selected-category">
+			<img src="<?php Utility::getModuleUrl('images/selected-three.png'); ?>">
+			我的台风(<span class="my-collection-count">0</span>)
+		</div>
+		<div class="fc"></div>
+	</div>
+
+	<div class="typhoon-list-wrapper">
+		<!-- 结果集 -->
+		<div class="typhoon-collection">
+			<div class="tab-content">
+				<div class="fl sort-condition" onclick="Typhoon.ToggleAdvanceFilter();">
+					<img src="<?php Utility::getModuleUrl('images/sort-condition.png'); ?>">条件筛选
+				</div>
+				<div class="fr remove-typhoon" onclick="Typhoon.RemoveTyphoon();">
+					<img src="<?php Utility::getModuleUrl('images/clean.png'); ?>">清除
+				</div>
+				<div class="sort-options">
+					<div class="sort-by-name" onclick="Typhoon.Sort();">按名字排序</div>
+					<div class="sort-by-year">按年份排序</div>
+				</div>
+			</div>
+			<div class="collection-table">
+				<table class="table"></table>
+			</div>
+		</div>
+		<!-- 当前选中 -->
+		<div class="current-collection">
+			<div class="active-typhoon">
+				<div class="active-typhoon-info fl"></div>
+				<div class="fr add-remove removefrom-mine">
+					<img src="<?php Utility::getModuleUrl('images/remove-hover.png');?>"> 从我的台风移除
+				</div>
+				<div class="fr add-remove addto-mine">
+					<img src="<?php Utility::getModuleUrl('images/add-hover.png');?>"> 添加到我的台风
+				</div>
+			</div>
+			<div class="typhoon-detail">
+				<div onclick="Typhoon.GetSimilarPathByID();">相似台风</div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+
+			<div class="typhoon-list-header">
+				<table>
+					<tbody>
+						<tr>
+							<td>时间<br><span>&nbsp;</span></td>
+							<td>强度<br><span>(TS)</span></td>
+							<td>移向<br><span>&nbsp;</span></td>
+							<td>移速<br><span>(m/s)</span></td>
+							<td>风力<br><span>(m/s)</span></td>
+							<td>气压<br><span>(hPa)</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="typhoon-list-body">
+				<table class="table">
+					<tbody></tbody>
+				</table>
+			</div>
+			<div class="typhoon-pointer-detail">
+				<div>
+					<div class="typhoon-detail-tab active fl">生命期风压图</div>
+					<div class="typhoon-detail-tab fl">城市距离</div>
+					<div class="fc"></div>
+				</div>
+                <div class="typhoon-tab-content">
+                    <div id="highcharts" style="width: 330px;height: 150px;margin-top: 5px"></div>
+                    <div class="typhoon-city-distance" style="display: none">
+                        <table style="width: 100%;">
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+			</div>
+		</div>
+		<!-- 我的台风 -->
+		<div class="my-collection">
+			<div class="tab-content">
+				<!-- <div class="fl sort-condition">
+					<img src="<?php Utility::getModuleUrl('images/sort-condition.png'); ?>">条件筛选
+				</div> -->
+				<div class="fr remove-typhoon" onclick="Typhoon.RemoveMyTyphoon();">
+					<img src="<?php Utility::getModuleUrl('images/clean.png'); ?>">清除
+				</div>
+				<div class="sort-options">
+					<div class="sort-by-name">按名字排序</div>
+					<div class="sort-by-year">按年份排序</div>
+				</div>
+			</div>
+			<div class="collection-table">
+				<table class="table"></table>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="slide-toggle">
+		<span class="goleft"></span>
+	</div>
+
+	<div class="current-coordinate tdmap"></div>
+
+	<div class="copy-right">
+		<strong>METGS</strong>
+		<span class="copyright-icon">&copy;</span>
+		<span class="year"><?php echo date('Y');?></span>
+		<span>杭州幂拓科技有限公司 |</span>
+		<a href="#">意见反馈</a> |
+		<a href="#">联系我们</a>
+	</div>
+
+	<div class="path-config-wrapper">
+		<img src="<?php Utility::getModuleUrl('images/config-arrow.png'); ?>">
+		<div class="config-title">
+			路径选择参数配置
+			<img src="<?php Utility::getModuleUrl('images/config-close.png'); ?>">
+		</div>
+		<div class="config-content">
+			<div class="config-content-div">
+				取最相似台风的条数
+				<input name="maxSimilarNumber" class="fr" />
+			</div>
+			<div class="config-content-div">
+				最大误差距离
+				<input name="maxDistance" class="fr"/>
+			</div>
+			<div class="config-content-div">
+				区域选择最大显示条数
+				<input name="maxPathNumber" class="fr"/>
+			</div>
+			<div class="config-content-div">
+				<div class="fr">
+					<div class="fl config-btn cancel-btn">取消</div>
+					<div class="fr config-btn complete-btn">完成</div>
+				</div>
+				<div class="fc"></div>
+			</div>
+		</div>
+	</div> <!-- end 路径选择参数配置 -->
+
+	<div class="advance-filter-wrapper">
+		<img src="<?php Utility::getModuleUrl('images/config-arrow.png'); ?>">
+		<div class="filter-title">
+			<span>台风路径过滤</span>
+			<img class="fr" src="<?php Utility::getModuleUrl('images/config-close.png'); ?>" onclick="Typhoon.ToggleAdvanceFilter();">
+		</div>
+		<div class="filter-content">
+			<div class="fl intensity-filter">
+				<div class="filter-content-title">
+					<img src="<?php Utility::getModuleUrl('images/intensity-strong.png'); ?>">
+					<span>强度</span>
+				</div>
+				<div class="intensity-filter-options">
+					<div class="intensity-filter-option">
+						<label class="control control-radio">超强台风
+					      	<input type="radio" value="50.9,999" name="intensity" />
+					      	<div class="control-indicator Super-TY"></div>
+					    </label>
+					    <label class="control control-radio">强台风
+					      	<input type="radio" value="41.4,50.9" name="intensity"/>
+					      	<div class="control-indicator STY"></div>
+					    </label>
+					    <label class="control control-radio">台风
+					      	<input type="radio" value="32.6,41.4" name="intensity"/>
+					      	<div class="control-indicator TY"></div>
+					    </label>
+					    <label class="control control-radio">强热带风暴
+					      	<input type="radio" value="24.5,32.6" name="intensity"/>
+					      	<div class="control-indicator STS"></div>
+					    </label>
+					    <label class="control control-radio">热带风暴
+					      	<input type="radio" value="17.2,24.5" name="intensity"/>
+					      	<div class="control-indicator TS"></div>
+					    </label>
+					    <label class="control control-radio">热带低压
+					      	<input type="radio" value="10.8,17.2" name="intensity"/>
+					      	<div class="control-indicator TD"></div>
+					    </label>
+					    <label class="control control-radio">全部
+					      	<input type="radio" checked="checked" value="0,999" name="intensity"/>
+					      	<div class="control-indicator ND"></div>
+					    </label>
+					</div>
+				</div>
+			</div>
+			<div class="fl pressure-filter">
+				<div class="filter-content-title">
+					<img src="<?php Utility::getModuleUrl('images/intensity-pressure.png'); ?>">
+					<span>气压</span>
+				</div>
+				<div class="pressure-filter-options">
+					<div class="pressure-filter-option active" minPressure='-1' maxPressure='-1'>全部</div>
+					<div class="pressure-filter-option" minPressure="0" maxPressure="900">0 - 900</div>
+					<div class="pressure-filter-option" minPressure="901" maxPressure="920">901 - 920</div>
+					<div class="pressure-filter-option" minPressure="921" maxPressure="940">921 - 940</div>
+					<div class="pressure-filter-option" minPressure="941" maxPressure="960">941 - 960</div>
+					<div class="pressure-filter-option" minPressure="961" maxPressure="980">961 - 980</div>
+					<div class="pressure-filter-option" minPressure="981" maxPressure="1000">981 - 1000</div>
+					<div class="pressure-filter-option" minPressure="1001" maxPressure="9999">1000+</div>
+				</div>
+			</div>
+			<div class="fl date-filter">
+				<div class="filter-content-title">
+					<img src="<?php Utility::getModuleUrl('images/date-filter.png'); ?>">
+					<span>时间</span>
+				</div>
+				<div class="date-filter-options">
+					<div class="month-options fl">
+						<div value="0" class="active">全部</div>
+						<div value="1">一月</div>
+						<div value="2">二月</div>
+						<div value="3">三月</div>
+						<div value="4">四月</div>
+						<div value="5">五月</div>
+						<div value="6">六月</div>
+						<div value="7">七月</div>
+						<div value="8">八月</div>
+						<div value="9">九月</div>
+						<div value="10">十月</div>
+						<div value="11">十一月</div>
+						<div value="12">十二月</div>
+					</div>
+					<div class="year-options fr">
+						<div value="0" class="active">全部</div>
+						<?php
+							foreach ($years as $year) {
+								echo "<div value='" . $year['year'] . "'>" . $year['year'] . "</div>";
+							}
+						;?>
+					</div>
+				</div>
+			</div>
+			<div class="fc"></div>
+		</div>
+		<div class="filter-buttons">
+			<div class="fr">
+				<div class="btn fl" onclick="Typhoon.ToggleAdvanceFilter();">取消</div>
+				<div class="btn fl" onclick="Typhoon.AdvanceFilter();">完成</div>
+			</div>
+		</div>
+	</div> <!-- end 台风高级过滤器 -->
+</div>

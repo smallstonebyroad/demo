@@ -1,0 +1,25 @@
+<?xml version='1.0'?>
+<!--
+//--------------------------------------------
+PHP 颜色表配置文件
+
+作者: jsl
+单位: www.metgs.com
+日期: 2016-9-11
+
+    NCLNode节点表示一种colorTable
+    其中Name必填，
+    isDefault 表示 是否是默认的，只有某一项启用即可（多个启用，则最后一个有效）
+    Algorithm 表示采用的算法，默认是（HSLClockwise）目前支持四种：
+        GrayMode,
+        RGBMode,
+        HSLClockwise, //顺时针 0~360度方向
+        HSLAnticlockwise, //逆时针 360~0度方向
+        
+//--------------------------------------------
+-->
+<Conf>
+    <NCLNode Name="WhiteMagenta" isDefault="0">Type=Grade;Color=[(255,255,255)|(128,0,64)]</NCLNode>
+    <NCLNode Name="WhiteBlue" isDefault="1">Type=Grade;Color=[(255,255,255)|(142,203,239)|(27,45,97)]</NCLNode>
+    <NCLNode Name="BlueWhiteOrangeRed" Algorithm="RGBMode">Type=Dispersion;Value=[0.0,0.2,0.5,0.85,1.0];Color=[(27,45,97)|(185,220,247)|(255,255,255)|(251,160,52)|(151,23,27)]</NCLNode>
+</Conf>

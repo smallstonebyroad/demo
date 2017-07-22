@@ -1,0 +1,17 @@
+@section('map_section')
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2017/7/4
+ * Time: 18:10
+ */
+echo '<hr>';
+echo "One view";
+$request = Yaf_Application::app()->getDispatcher()->getRequest();
+echo 'Module=' . $request->getModuleName() . '<br>';
+echo 'contr=' . $request->getControllerName() . '<br>';
+echo 'Action=' . $request->getActionName() . '<br>';
+echo '<hr>';
+?>
+@endsection

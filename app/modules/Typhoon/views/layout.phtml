@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Typhoon Platform</title>
+	<meta name="description" content="typhoon,台风检索,风暴潮检索,幂拓台风"/>
+	<link rel="stylesheet" type="text/css" href="<?php Utility::getModuleUrl('css/layout.css'); ?>">
+	<?php if ( isset( $this->css)) echo $this->css; ?>
+</head>
+<body>
+	<!--[if lt IE 9]>
+    <div class="browser-outdate" style="margin:0 auto; padding-top: 70px;height:100%;width: 100%;position: fixed; top: 0;z-index:10000;background: #f0eff4;text-align: center;">
+        <img src="/Typhoon/images/upgrade/cartoon.png">
+        <h1 style="font-family: 微软雅黑;font-weight: normal;font-size: 72px;color:#4abdeb;">请升级您的浏览器</h1>
+        <p style="width: 1120px;margin: 0 auto;color: #68839f;font-family: 微软雅黑;line-height: 30px;font-size: 14px;padding-top: 10px;">IE8浏览器是2008年微软推出的浏览器，至今已近10年，相当于10年前的诺基亚手机时到今日，诺基亚已经被市场淘汰，在智能机流行的今天请及时升级您的浏览器跟上时代的步伐。为了您更好的用户体验，请使用以下浏览器浏览 </p>
+        <img style="margin-top: 30px;" src="/Typhoon/images/upgrade/browser.png">
+    </div>
+    <![endif]-->
+	<div class="header">
+		<div class="logo fl">
+			<img src="<?php Utility::getModuleUrl('images/logo.png'); ?>">
+			<h1>台风风暴潮检索平台</h1>
+		</div>
+		<div class="loader">
+			<img src="<?php Utility::getModuleUrl('images/loader.gif'); ?>">
+		</div>
+		<div class="features fr">
+			<div class="fl feature-icon">
+				<img src="<?php Utility::getModuleUrl('images/help.png'); ?>">
+				<span>帮助</span>
+			</div>
+			<div class="fl feature-icon">
+				<img src="<?php Utility::getModuleUrl('images/measure.png'); ?>">
+				<span>测距</span>
+			</div>
+			<div class="fl feature-icon">
+				<img src="<?php Utility::getModuleUrl('images/share.png'); ?>">
+				<span>分享</span>
+			</div>
+			<div class="fl feature-icon feature-config">
+				<img src="<?php Utility::getModuleUrl('images/config.png'); ?>">
+				<span>设置</span>
+			</div>
+			<div class="map-style">
+				<div class="map-type1" onclick="Typhoon.SetBaseMapSource(this, 'mmap')">区域图</div>
+				<div class="map-type2 active" onclick="Typhoon.SetBaseMapSource(this, 'tdmap')">天地图</div>
+				<img src="<?php Utility::getModuleUrl('images/up-arrow.png'); ?>">
+			</div>
+		</div>
+	</div>
+	<?php if ( isset( $this->content)) echo $this->content; ?>
+
+	<script type="text/javascript" src="<?php Utility::getModuleUrl('js/jquery/jquery-1.11.3.min.js'); ?>"></script>
+	<script type="text/javascript" src="<?php Utility::getModuleUrl('js/forie9/classList.js'); ?>"></script>
+	<script type="text/javascript" src="<?php Utility::getModuleUrl('js/forie9/requestAnimateFrame.js'); ?>"></script>
+	<?php if (isset($this->js)) echo $this->js; ?>
+</body>
+</html>

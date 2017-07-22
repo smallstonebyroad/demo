@@ -1,0 +1,75 @@
+.ib { display: inline-block;}
+.border{ border:1px red solid;}
+.ml5 { margin-left: 5px;}
+.ml10 { margin-left: 10px;}
+
+.header-logo { position: absolute; left:0px; top: 0px; width: 80px; height:78px;z-index: 1000; display:none;}
+.header-title { font-weight: bolder; font-size: 24px; font-family:  "Microsoft YaHei", "heiti"; color:white;margin-left:20px;}
+.header-menu { color: white; margin-left: 80px;text-align: center}
+.header-menu-item { margin: 0px 0px 1px 0px; height: 39px;  width: 100px; font-weight: bold; font-size: 14px;}
+.header-menu .active { background-color: rgb(68,136,202);}
+.header-right { margin-top: 20px;height: 20px;line-height: 20px; margin-right: 5px; }
+.header-right-help { font-size: 12px; color: white; margin-right:10px; }
+.header-right-feedback { font-size: 12px; color: white; margin-right:0px; }
+
+/*-- Variable panel */
+.panel-fcst-var-title { height: 38px; line-height:38px; color:#2d5a9e; font-weight:bold; padding-left: 10px; width:100%; border-bottom: solid 2px #2d5a9e; }
+.fcst-var {  }
+.fcst-var-item { height: 30px; line-height: 30px; padding-left: 15px; cursor: pointer; }
+.fcst-var-item:hover { font-weight: bold; }
+.fcst-var .active { color: red; font-weight: bold;}
+.fcst-var .seprator { height: 1px; width:80%; margin-left: 15px; border-bottom: 1px dashed #abe4ff; }
+
+.panel-tips { position: absolute; bottom: 0px;  width:100%;min-height: 200px;}
+.panel-tips-title { height: 38px; line-height:38px; color:#2d5a9e; font-weight:bold; padding-left: 10px; width:100%; border-top: solid 2px #2d5a9e;border-bottom: solid 1px #2d5a9e;}
+.panel-tips-content {}
+
+
+.navi-bar { position:absolute; height: 38px; width:100%; border-bottom:1px solid rgb(204,204,204); font-size: 12px; z-index: 999; background-color: rgb(238, 238, 238); clear: both;}
+.source-bar{ position:absolute; top: 38px; height: 38px; width:100%; border-bottom:2px solid rgb(243,152,0);z-index: 990; background-color: rgb(245, 245, 245);clear: both;}
+.main-map{ position:absolute; top:76px; bottom: 0px; width:100%; }
+.main-map-title{ z-index:1000;position:absolute; bottom:5px; left:5px; min-height:5px; min-width:100px; padding: 5px 10px 5px 10px; border: solid 1px #9C9797; border-radius: 3px; background-color: white; box-shadow: 0px 2px 4px 2px #9C9797;}
+#main-map-latlon{ z-index:1000;position:absolute; bottom:25px; right:5px; width:100px; height:20px; }
+
+
+.navi-bar .first { margin-left:20px;}
+.navi-bar .control { margin-top:7px;height: 24px;line-height: 24px;}
+.navi-bar .seprator { width:1px; height: 20px; margin:9px 20px 9px 20px; background-color:rgb(204,204,204); }
+.navi-bar .box { border:solid 1px rgb(204,204,204); height:22px; display: inline-block;background-color: white;padding:0px 5px 0px 5px;}
+.navi-bar img { margin-top: -6px;}
+
+.ctrl-forcast-hour-step {width:60px;height:22px; border:solid 1px rgb(204,204,204);background-color: white;cursor: pointer;}
+.ctrl-pressure-level {width:80px;height:22px; border:solid 1px rgb(204,204,204);background-color: white;cursor: pointer;}
+
+
+.source-bar .source-item { width: 80px; height:38px;line-height: 38px; float:left;text-align: center; font-size: 12px; color: rgb( 51, 51, 51 ); cursor: pointer;}
+.source-bar .first{ margin-left: 20px;}
+.source-bar .active{ background-color: rgb(243,152,0);}
+
+/*
+.navi-bar{ position:absolute; height: 20px; padding:9px 3px 9px 3px; width:100%; border-bottom:1px solid rgb(204,204,204); z-index: 999; background-color: rgb(238, 238, 238); clear: both;}
+.source-bar{ position:absolute; top: 39px; height: 20px; padding:9px 3px 9px 3px; width:100%; border-bottom:2px solid rgb(243,152,0);z-index: 999; background-color: rgb(245, 245, 245);clear: both;}
+.nwp-map{ width:100%; height:100%; background-color: lightgrey;}
+*/
+
+/*----- Initial date time -----*/
+.mg-idv-main-box{ height:22px; line-height: 22px;}
+.mg-idv-main-box-init-date { border:solid 1px rgb(204,204,204);cursor: pointer;width:140px; background-color: white;}
+
+.mg-ftn-main-box{ height:22px; line-height: 22px;}
+.mg-ftn-main-box-fcst-time { border: solid 1px rgb(204,204,204); cursor: pointer;width:150px;background-color: white;}
+.mg-ftn-fcst-time-selector { display:none;position:absolute;width:150px;background-color: white;cursor: pointer;z-index:990;max-height: 300px;overflow-y: scroll;}
+
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7f7f7f;
+    -webkit-border-radius: 2px;
+}
+

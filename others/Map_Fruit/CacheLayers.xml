@@ -1,0 +1,41 @@
+<?xml version='1.0'?>
+<!--
+//--------------------------------------------
+PHP 地图缓存层的配置
+
+作者: hz
+单位: www.metgs.com
+日期: 2016-07-03
+//--------------------------------------------
+-->
+<Conf>
+  <!-- 地图定义 -->
+  <Map> 	
+	<!-- map file path, no / at end -->
+	<Path>./Map/FruitMap</Path>
+
+
+  	<Layer Type="shp" Name="Map_Coast" AsClipMask="0">
+  	  	<Caption>海岸线</Caption>
+  		<File>nfgis_coast.shp</File>
+  		<Line On="1">
+  			<Width>2</Width>
+  			<Color>(110,110,110)</Color>
+  		</Line>  	
+  		<Fill On="0">
+  			<Color>(246,197,104)</Color>
+  		</Fill>  			
+  	</Layer>
+
+  	<Layer Type="shp" Name="Map_China" AsClipMask="1">
+  	  	<Caption>省界</Caption>
+  		<File>nfgis_zhejiang_dist_l.shp</File>
+  		<Line On="1">
+  			<Width>1</Width>
+  			<Color>(110,110,110)</Color>
+  		</Line>  		
+  	</Layer>
+  	
+  </Map>
+  
+</Conf>

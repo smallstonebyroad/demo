@@ -1,0 +1,6 @@
+/tools
+/.idea
+/.settings
+/*.log
+/public/js/mjs
+/public/tiles

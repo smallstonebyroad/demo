@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fruit Platform</title>
+
+    <link rel="stylesheet" type="text/css" href="<?php echo Utility::getModuleUrl(); ?>/css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo Utility::getModuleUrl(); ?>/css/fruit.css">
+    <script type="text/javascript" src="<?php echo Utility::getModuleUrl(); ?>/js/jquery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="<?php echo Utility::getModuleUrl(); ?>/js/metgs/mlib.js"></script>
+    <script type="text/javascript" src="<?php echo Utility::getModuleUrl(); ?>/js/metgs/mmap.js"></script>
+    <script type="text/javascript" src="<?php echo Utility::getModuleUrl(); ?>/js/ol/ol.js"></script>
+    <script type="text/javascript" src="<?php echo Utility::getModuleUrl(); ?>/js/pako/pako.min.js"></script>
+    <?php if ( isset( $this->header_section)) echo $this->header_section; ?>
+
+    <style type="text/css">
+
+    </style>
+
+</head>
+<body>
+<div class="main-body">
+
+    <div class='main-header'>
+        <div class="header-logo">
+            <img src="images/Logo.png" />
+        </div>
+        <div class="header-title fl">Fruit - 细网格数值预报分析系统 <span style="font-size: 14px;"> V0.1 测试版</span></div>
+        <div class="header-menu fl">
+            <div class="header-menu-item active fl">综合图</div>
+            <div class="header-menu-item fl">高空要素</div>
+            <div class="header-menu-item fl">地面要素</div>
+            <div class="header-menu-item fl">诊断变量</div>
+            <div class="header-menu-item fl">时间序列</div>
+            <div class="header-menu-item fl">对比检验</div>
+        </div>
+        <div class="header-right fr">
+            <div class="header-right-feedback fr">意见建议</div>
+            <div class="header-right-help fr">使用帮助</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="main-content-map">
+            <div>
+                <?php if ( isset($this->map_section) ) echo $this->map_section; ?>
+            </div>
+            <div class="copyright">
+                <div>版权所有：浙江省气象台  | 技术支持：杭州幂拓科技有限公司</div>
+            </div>
+        </div>
+        <div class="main-content-panel">
+            <?php if ( isset( $this->panel_section) ) echo $this->panel_section; ?>
+        </div>
+    </div>
+
+    <div class="main-waiting" id="_main_wariting">
+        <div style="background:url('{{asset('images/city/load.gif')}}') center center no-repeat"></div>
+    </div>
+<div>
+</body>
+</html>

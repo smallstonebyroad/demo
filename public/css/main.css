@@ -1,0 +1,40 @@
+*{    font-family: "Microsoft YaHei", "simsun"; font-size: 12px;}
+
+.fl{    float: left;}
+.fr{    float: right;}
+.f-clear{    clear: both;}
+.cursor-hand { cursor: pointer;}
+
+html{height:100%;width:100%;margin:0;padding:0;}
+body{height:100%;width:100%;margin:0;padding:0;}
+.main-body{height:100%;width:100%;position: relative;}
+.main-header{height:40px;line-height:40px;width:100%;background-color:rgb(40, 86, 154);}
+.main-content{position: absolute;top:40px;left:0;right:0;bottom: 0px;}
+.main-content-map{position:absolute;height:100%;left:0px; right:260px;}
+.main-content-panel{position: absolute;height:100%;width:260px;right:0px;border-left:solid 1px #2d5a9e;background-color: rgb(247,252,252);}
+.copyright{position: absolute;bottom:0;height:20px;line-heigh:20px; right:0px;padding:0px 15px 0px 15px;background-color:rgba(120,120,120,0.5) }
+
+a{  text-decoration: none;color: black;}
+img{ vertical-align: middle;}
+
+
+.main-waiting
+{
+    display: none;
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    background-color: rgba(0, 122, 204, 0.2);
+}
+.main-waiting > div
+{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.border { border:solid 1px blue;}

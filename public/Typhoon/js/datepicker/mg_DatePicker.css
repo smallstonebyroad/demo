@@ -1,0 +1,88 @@
+﻿
+/*日历选择插件css样式表---------------------------------------------------------------------------------------------------------------*/
+*{box-sizing:border-box;}
+.mg-date-picker { font-size:12px;float: left; position: absolute; width: 185px;  height: 230px; border: solid 1px #9C9797; border-radius: 5px; background-color: white; box-shadow: 0px 3px 10px 2px #9C9797;z-index:1000;display:none;}
+.mg-date-picker ul { margin: 0 0 0 0; padding: 0 0 0 0;}
+.mg-date-picker li { list-style-type: none; float: left;}
+.mg-date-picker li,  .mg-date-picker div  {   font-family: 'Microsoft Yahei', verdana;    -moz-user-select: none;    -ms-user-select: none;    -webkit-user-select: none;}
+
+.mg-date-picker-close {right:0;width: 20px;text-align: center;color: #3D3B3B;cursor : pointer;position: absolute;top:0;height:38px;line-height: 38px;}
+.mg-date-picker-close:hover {font-weight:bold}
+
+.mg-date-picker-head{width: 100%; height: 35px; }
+.mg-date-picker-head ul li div {    width: 108px;height: 120px;border: solid 1px #929292;
+    z-index: 100;text-align: center;left: 38px;
+    background-color: white; box-shadow: 0px 3px 5px #929292;
+    position: absolute;padding: 10px 0 10px 0;
+}
+.mg-date-picker-head li { color: #666565;cursor: pointer;font-size: 13px;border: solid 1px white;line-height: 35px;}
+.mg-date-picker-head li:hover {color: #1F75E2;font-weight: bold;}
+.mg-date-picker-head ul li div ul li {width: 54px;height: 18px;text-align: center;color: #3D3B3B;font-weight: normal;font-size: 13px;border: 0;}
+.mg-date-picker-head ul li div ul li:hover {background-color: #efeded;color: #3D3B3B;border: 0;}
+.mg-date-picker-head-navi {height:100%;width:28px;text-align:center;font-family: fantasy;}
+
+.mg-date-picker-head-year{height:100%;width:68px;text-align:center}
+.mg-date-picker-head-month{height:100%;width:38px;text-align:center}
+.mg-date-picker-head ul li div.mg-date-picker-year-detial ul{width:100%;}
+.mg-date-picker-head ul li div.mg-date-picker-year-detial ul li{height: 20px;line-height: 20px;width:50%;}
+.mg-date-picker-seprator-line{float: left; width: 100%; height: 1px; background-color: #efeded; margin: 0 auto 5px auto;}
+.mg-date-picker-head ul li div.mg-date-picker-month-detial{height:140px;}
+.mg-date-picker-head ul li div.mg-date-picker-month-detial ul{width:100%;}
+.mg-date-picker-head ul li div.mg-date-picker-month-detial ul li{height: 20px;line-height: 20px;width:50%;}
+
+.mg-date-picker-body{ width:169px;height:155px;margin:0 auto 0px auto;}
+.mg-date-picker-week li {width:100%;color: #3D3B3B;font-size: 12px;width: 24px;height: 20px;line-height: 20px; text-align: center;cursor: default;}
+.mg-date-picker-day li {width:100%;height:20px;font-size: 12px;width: 24px;line-height: 20px; border: 1px solid white;text-align: center;cursor: pointer;}
+.mg-date-picker-day li:hover {border-color: #929292;border-radius: 3px;}
+
+.mg-date-picker-date-selected {background-color: #51A9E4;color: white; border-color: #929292;}
+.mg-date-picker-date-last-month {color: #929292;}
+.mg-date-picker-date-next-month {color: #929292;}
+
+.mg-date-picker-time-or-today li{width:28px;border:1px solid white;text-align:center;cursor:pointer;}
+.mg-date-picker-time-or-today li:hover{border-color: #929292;border-radius: 3px;}
+
+.mg-date-picker-time {float:left;width:40px;height:20px;line-height:20px;text-align:center;margin-left:40px}
+.mg-date-picker-hour {cursor: pointer;}
+.mg-date-picker-hour:hover {font-weight:bold;color: #1F75E2; background-color:#D6DBE9;border-radius: 3px;}
+.mg-date-picker-hour-detail {position:absolute; display: none; z-index:1000; border: solid 1px #9C9797; border-radius: 3px; background-color: white; box-shadow: 0px 3px 3px 2px #9C9797;}
+.mg-date-picker-minute {cursor: pointer;}
+.mg-date-picker-minute:hover {font-weight:bold;color: #1F75E2; background-color:#D6DBE9;border-radius: 3px;}
+.mg-date-picker-minute-detail {position:absolute; display: none; z-index:1000; border: solid 1px #9C9797; border-radius: 3px; background-color: white; box-shadow: 0px 2px 6px 2px #9C9797;}
+
+.mg-date-picker-today {width:100%;height: 20px;text-align: center;font-size: 12px;line-height: 20px; cursor:pointer;margin:0 0 5px 0;}
+.mg-date-picker-today:hover{ font-weight:bold;color: #1F75E2; background-color:#D6DBE9}
+.mg-date-picker-ok {float:right;width:40px;height:20px;line-height:20px;text-align:center;margin-right:40px;cursor:pointer;}
+.mg-date-picker-ok:hover{ font-weight:bold;color: #1F75E2; background-color:#D6DBE9;border-radius: 3px;}
+.mg-date-picker-head ul li div.mg-date-pick-left{
+    width:0;
+    height:0;
+    top:14px;
+    background-color: transparent;
+    left:0;
+    padding:0;
+    box-shadow:none;
+    border:none;
+    border-top: 4px solid transparent;
+    border-right: 8px solid #333;
+    border-bottom: 4px solid transparent;
+    position:relative;
+    float: right;
+    
+}
+.mg-date-picker-head ul li div.mg-date-pick-right{
+    left:4px;
+    top:14px;
+    padding:0;
+    background-color: transparent;
+    box-shadow:none;
+    width:0;
+    height:0;
+    border:none;
+    border-top: 4px solid transparent;
+    border-left: 8px solid #333;
+    border-bottom: 4px solid transparent;
+    position:relative;
+    float: left;
+}
+

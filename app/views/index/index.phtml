@@ -1,0 +1,112 @@
+@section('header_section')
+<link rel="stylesheet" type="text/css" href="js/mjs/mg_DatePicker.css">
+<script type="text/javascript" src="js/mjs/mg_DatePicker.js"></script>
+<link rel="stylesheet" type="text/css" href="js/mjs/mg_InitialDateEx.css">
+<script type="text/javascript" src="js/mjs/mg_InitialDateEx.js"></script>
+<link rel="stylesheet" type="text/css" href="js/mjs/mg_ForecastTime.css">
+<script type="text/javascript" src="js/mjs/mg_ForecastTime.js"></script>
+<link rel="stylesheet" type="text/css" href="js/mjs/mg_ForecastStep.css">
+<script type="text/javascript" src="js/mjs/mg_ForecastStep.js"></script>
+<link rel="stylesheet" type="text/css" href="js/mjs/mg_PressureLevel.css">
+<script type="text/javascript" src="js/mjs/mg_PressureLevel.js"></script>
+<link rel="stylesheet" type="text/css" href="css/fruit.css">
+<script type="text/javascript" src="js/mg/map.js"></script>
+<script type="text/javascript" src="js/mg/fruit.js"></script>
+<script type="text/javascript">
+
+//    $(document).on('contextmenu', function() {return false;});
+
+    $(document).ready(function(){
+//        fitWindow();
+//        loadMap_MapJS();
+        FruitObj.Init();
+//            initialNaviBar()
+
+    });
+</script>
+@endsection
+
+@section('panel_section')
+<div class="panel-reserve" style="height: 38px;width:100%;"></div>
+<div class="panel-fcst-var">
+    <div class="panel-fcst-var-title">预报要素选择</div>
+    <div class="fcst-var">
+        <div class="fcst-var-item" param="(h:?:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)">高度 + 风</div>        
+        <div class="fcst-var-item" param="(h:500:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(slp:-1:0:0)(l)(-)">高度 + 风 + 海平面气压</div>
+        <div class="seprator"></div>
+        <div class="fcst-var-item" param="(h:?:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(t:?:0:0)(l)(-)">高度 + 风 + 温度（线）</div>
+        <div class="fcst-var-item" param="(h:?:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(t:?:0:0)(l)(-)">高度 + 风 + 温度（填色值）</div>
+        <div class="seprator"></div>
+        <div class="fcst-var-item" param="(h:500:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(slp:-1:0:0)(l)(-)">高度 + 风 + 相对湿度</div>
+        <div class="fcst-var-item" param="(h:500:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(slp:-1:0:0)(l)(-)">高度 + 风 + 比湿</div>
+        <div class="fcst-var-item" param="(h:500:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(slp:-1:0:0)(l)(-)">高度 + 风 + 垂直速度</div>
+        <div class="seprator"></div>
+        <div class="fcst-var-item" param="(h:500:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(slp:-1:0:0)(l)(-)">高度 + 风 + 降水(前24h)</div>
+        <div class="fcst-var-item" param="(h:500:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(slp:-1:0:0)(l)(-)">高度 + 风 + 降水(后24h)</div>
+        <div class="fcst-var-item" param="(h:500:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(slp:-1:0:0)(l)(-)">高度 + 风 + 降水(前12h+后12h)</div>
+        <div class="fcst-var-item" param="(h:500:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(slp:-1:0:0)(l)(-)">高度 + 风 + 降水(前12h)</div>
+        <div class="fcst-var-item" param="(h:500:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(slp:-1:0:0)(l)(-)">高度 + 风 + 降水(后12h)</div>
+        <div class="fcst-var-item" param="(h:500:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(slp:-1:0:0)(l)(-)">高度 + 风 + 降水(前6h+后6h)</div>
+        <div class="seprator"></div>
+        <div class="fcst-var-item" param="(h:500:0:0)(lftb)(-)|(u,v:?:0:0)(l)(-)|(slp:-1:0:0)(l)(-)">海平面气压 + 10米风</div>
+    </div>
+</div>
+<div class="panel-tips">
+    <div class="panel-tips-title">说明：</div>
+    <div class="panel-tips-content">
+    </div>
+</div>
+<div id="debugBox" style="width:100%; height: 200px; overflow-y: scroll;background-color:white;"></div>
+@endsection
+
+<!-- =============================================================== -->
+@section('map_section')
+<div class="navi-bar">
+    <div class="control fl first">
+        <div class="fl">起报：</div>
+        <div id="ctrl-initial-date" class="fl">2017-06-19 20:00</div>
+        <div class="fl ml5">
+            <img id='initial-date-navi-left' src="images/InitDateNaviPrev.png" class="cursor-hand"  />
+            <img id='initial-date-navi-right' src="images/InitDateNaviNext.png" class="cursor-hand"  />
+        </div>
+    </div>
+    <div class="seprator fl"></div>
+    <div class="control fl">
+        <div class="fl">步进：</div>
+        <div class="ctrl-forcast-hour-step fl">24H</div>
+    </div>
+    <div class="seprator fl"></div>
+    <div class="control fl">
+        <div class="fl">时效：</div>
+        <div id="ctrl-forecast-hour" class="fl">+24H 2017-06-20 20:00</div>
+        <div class="fl ml5">
+            <img id='forecast-hour-navi-left' src="images/InitDateNaviPrev.png" class="cursor-hand"  />
+            <img id='forecast-hour-navi-right' src="images/InitDateNaviNext.png" class="cursor-hand"  />
+        </div>
+    </div>
+    <div class="seprator fl"></div>
+    <div class="control fl">
+        <div class="fl">层次：</div>
+        <div class="ctrl-pressure-level fl">500hPa</div>
+        <div class="fl ml5">
+            <img id='pressure-level-navi-up' src="images/LevelNaviUp.png" class="cursor-hand" />
+            <img id='pressure-level-navi-down' src="images/LevelNaviDown.png" class="cursor-hand" />
+        </div>
+    </div>
+</div>
+<div class="source-bar">
+    <!-- <div class="fl">数据源：</div> -->
+    <div class="source-item first active" source="ECMWF">ECMWF</div>
+    <div class="source-item" source="JMA">JMA</div>
+    <div class="source-item" source="NCEP">NCEP</div>
+    <div class="source-item" source="GRAPES">GRAPES</div>
+    <div class="source-item" source="SMB-WARMS">SMB-WARMS</div>
+    <div class="source-item" source="ZJWARMS">ZJWARMS</div>
+</div>
+<!--     -->
+<div id='main-map' class="main-map">
+    <div class="main-map-title">请选择数值预报产品</div>
+    <div id="main-map-latlon"></div>
+
+</div>
+@endsection
